@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>运维管理|登陆页面</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        #content{
+            padding: 13% 35%;
+        }
+        .form-control-feedback{
+            right:4%;
+        }
+
+    </style>
+</head>
+<body>
+<div id="content">
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <label for="account" class="col-md-2 control-label">账号</label>
+            <div class="col-md-10">
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                <input type="text" class="form-control" id="account"
+                       placeholder="请输入名字">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-md-2 control-label">密码</label>
+            <div class="col-md-10">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                <input type="password" class="form-control" id="password"
+                       placeholder="请输密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"> 请记住我
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default">登 录</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

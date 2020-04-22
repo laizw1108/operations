@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zoe.operations.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.zoe.operations.model.User">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="nick" jdbcType="VARCHAR" property="nick" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, nick, phone, address, email
+  </sql>
+
+  <!-- 分页查询 -->
+  <select id="selectUserByPage" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    u_user
+    order by nick,id
+    limit #{startRow,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+  </select>
+
+  <!-- 分页查询 -->
+  <select id="selectUserById" parameterType="java.lang.String" resultType="com.zoe.operations.model.User">
+    select
+    <include refid="Base_Column_List"></include>
+    from
+    u_user
+    where
+    id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <!-- 分页查总数 -->
+  <select id="selectUserByTotal" resultType="java.lang.Integer">
+    select
+    count(id)
+    from
+    u_user
+  </select>
+
+  <update id="updateByPrimarySelective" parameterType="com.zoe.operations.model.User">
+    update u_user
+    <set>
+      <if test="nick != null">
+        nick = #{nick,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR}
+      </if>
+    </set>
+    <where>
+      id = #{id,jdbcType=VARCHAR}
+    </where>
+  </update>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    DELETE FROM u_user WHERE id = #{id,jdbcType=VARCHAR}
+  </delete>
+
+  <insert id="insert" parameterType="com.zoe.operations.model.User">
+    insert into u_user (id, nick, phone, 
+      address, email)
+    values (#{id,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.zoe.operations.model.User" useGeneratedKeys="true" keyProperty="id">
+
+    <selectKey keyProperty="id" resultType="string" order="BEFORE">
+      select replace(uuid(),'-','') as id from DUAL
+    </selectKey>
+
+    insert into u_user
+
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+
+      <if test="nick != null">
+        nick,
+      </if>
+
+      <if test="phone != null">
+        phone,
+      </if>
+
+      <if test="address != null">
+        address,
+      </if>
+
+      <if test="email != null">
+        email,
+      </if>
+    </trim>
+
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id},
+
+      <if test="nick != null">
+        #{nick,jdbcType=VARCHAR},
+      </if>
+
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+</mapper>
