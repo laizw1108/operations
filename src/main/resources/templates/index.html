@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>运维管理|登陆页面</title>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
 
     <style>
         #content{
@@ -19,7 +19,7 @@
 </head>
 <body>
 <div id="content">
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" th:action="@{/user/login}" th:method="post">
         <div class="form-group">
             <label for="account" class="col-md-2 control-label">账号</label>
             <div class="col-md-10">

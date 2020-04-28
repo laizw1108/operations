@@ -1,17 +1,38 @@
 package com.zoe.operations.controller;
 
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UserLogin {
 
-    @RequestMapping("index")
-    public String login() {
+    @RequestMapping("/setsession")
+    public @ResponseBody String setSession(HttpServletRequest request){
+        String aaa = "dsfsdfsd";
+        request.getSession().setAttribute("user",aaa);
+        return "user is " + aaa;
+    }
+
+    @RequestMapping("/getsession")
+    public @ResponseBody String getSession(HttpServletRequest request){
+        return request.getSession().getAttribute("user").toString();
+    }
+
+    @RequestMapping("/index")
+    public String index() {
         return "index";
     }
 
-    @RequestMapping("navigation")
+    @RequestMapping("/user/login")
+    public String login(HttpServletRequest request){
+        return "navigation";
+    }
+
+    @RequestMapping("/navigation")
     public String navigation() {
         return "navigation";
     }
