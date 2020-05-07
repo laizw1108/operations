@@ -1,6 +1,5 @@
 package com.zoe.operations.controller;
 
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,17 +36,17 @@ public class UserLogin {
         return "navigation";
     }
 
-    @RequestMapping("webcome")
+    @RequestMapping("/welcome")
     public String webcome() {
-        return "webcome";
+        return "welcome";
     }
 
-    @RequestMapping("project1")
+    @RequestMapping("/project1")
     public String project1() {
         return "project1";
     }
 
-    @RequestMapping("project2")
+    @RequestMapping("/project2")
     public String project2() {
         return "project2";
     }
